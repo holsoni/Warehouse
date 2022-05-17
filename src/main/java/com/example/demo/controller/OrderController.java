@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.OrderCreateRequest;
+import com.example.demo.DTO.OrderDTO;
+import com.example.demo.DTO.OrderUpdateRequest;
 import com.example.demo.entities.Order;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.OrderService;
@@ -16,24 +19,24 @@ public class OrderController {
     private final OrderService service;
 
     @GetMapping("/getAll")
-    public ResponseEntity<Page<Order>> getAll(@RequestParam(required = false, defaultValue = "10") int size,
+    public ResponseEntity<Page<OrderDTO>> getAll(@RequestParam(required = false, defaultValue = "10") int size,
                                                    @RequestParam(required = false,defaultValue = "1") int page){
 
         return ResponseEntity.ok(service.getAll(page,size));
     }
 
     @GetMapping("/getById/{id}")
-    public Order getById(@PathVariable Long id) {
+    public OrderDTO getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
     @PostMapping("/create")
-    public Order create(@RequestBody Order order) {
+    public OrderDTO create(@RequestBody OrderCreateRequest order) {
         return service.create(order);
     }
 
     @PutMapping("/update")
-    public Order update( @RequestBody Order order) {
+    public OrderDTO update( @RequestBody OrderUpdateRequest order) {
         return service.update(order);
     }
 

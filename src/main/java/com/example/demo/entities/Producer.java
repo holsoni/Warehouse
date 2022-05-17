@@ -21,6 +21,7 @@ public class Producer {
 
     @Id
     private Long id;
+    private String name;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person head;
